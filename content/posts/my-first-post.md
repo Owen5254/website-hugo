@@ -1,7 +1,7 @@
 ---
 title: "My first post - 新朋友 Hugo"
 date: 2022-12-16T01:06:15+08:00
-draft: true
+draft: false
 
 ---
 
