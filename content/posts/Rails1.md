@@ -12,7 +12,7 @@ draft: false
 這是最重要的概念了    
 整個Rails專案是採用MVC(Model View Controller)所設計的     
 這裡借用一張圖來說明關係 
-![Example](/resources/_gen/images/Rails1/Ex1.png)
+![Example](/static/Rail1/Ex1.png)
 1. 使用者輸入網址 第一關會遇到的是Route (config/routes.rb）
 2. Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action
 3. Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事
@@ -32,7 +32,7 @@ Controller 就是放在專案的 app/controllers 目錄裡
 ##### Model
 跟 Model 相關的檔案都放在 app/models 目錄裡     
 
-![Example](/resources/_gen/images/Rails1/Model.png)
+![Example](/static/Rail1/Model.png)
 
 ##### View
 舉例來說 跟 PostsController 相關的 View     
@@ -90,7 +90,7 @@ Rails.application.routes.draw do
   resources :users
 end
 ```
-![Example](/resources/_gen/images/Rails1/Ex2.png)
+![Example](/static/Rail1/Ex2.png)
 
 ✨ **prefix**
 在 rails routes 指令所秀出來的各項資訊中，有一欄叫 Prefix     
@@ -121,26 +121,26 @@ edit_product + url = edit_product_url(2)  => http://kaochenlong.com/products/2/e
     ```
 2. 使用member(帶有:id):
 如果我想要以下路徑：
-```
-# 確認 2 號訂單
-POST /orders/2/confirm
+    ```
+    # 確認 2 號訂單
+    POST /orders/2/confirm
 
-# 取消 3 號訂單
-DELETE /orders/3/cancel
-```
-跟 collection 有點類似，就是在 orders 這個 Resources 裡加上 member
-```ruby
-Rails.application.routes.draw do
-  resources :orders do
-    member do
-      post :confirm
-      delete :cancel
+    # 取消 3 號訂單
+    DELETE /orders/3/cancel
+    ```
+    跟 collection 有點類似，就是在 orders 這個 Resources 裡加上 member
+    ```ruby
+    Rails.application.routes.draw do
+      resources :orders do
+        member do
+          post :confirm
+          delete :cancel
+        end
+      end
     end
-  end
-end
-```
-這樣一來就會產生下圖新的路徑：
-![Example](/resources/_gen/images/Rails1/Ex3.png)
+    ```
+    這樣一來就會產生下圖新的路徑：
+    ![Example](/static/Rail1/Ex3.png)
 
 *****
 第一篇文章就先到這邊結束吧
