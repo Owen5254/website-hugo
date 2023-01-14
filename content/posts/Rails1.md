@@ -12,7 +12,7 @@ draft: false
 這是最重要的概念了    
 整個Rails專案是採用MVC(Model View Controller)所設計的     
 這裡借用一張圖來說明關係 
-![Example](images/Ex1.png)
+![Example](/images/Ex1.png)
 1. 使用者輸入網址 第一關會遇到的是Route (config/routes.rb）
 2. Rails 會根據使用者輸入的網址及參數 告訴你應該去找哪個 Controller 上的哪個 Action
 3. Controller通常會有多個action(也就是多個method)這個 Action 會決定要做什麼事
@@ -32,7 +32,7 @@ Controller 就是放在專案的 app/controllers 目錄裡
 ##### Model
 跟 Model 相關的檔案都放在 app/models 目錄裡     
 
-![Example](images/Model.png)
+![Example](/images/Model.png)
 
 ##### View
 舉例來說 跟 PostsController 相關的 View     
@@ -90,7 +90,7 @@ Rails.application.routes.draw do
   resources :users
 end
 ```
-![Example](images/Ex2.png)
+![Example](/images/Ex2.png)
 
 ✨ **prefix**
 在 rails routes 指令所秀出來的各項資訊中，有一欄叫 Prefix     
@@ -140,7 +140,7 @@ edit_product + url = edit_product_url(2)  => http://kaochenlong.com/products/2/e
     end
     ```
     這樣一來就會產生下圖新的路徑：    
-  ![Example](images/Ex3.png)
+  ![Example](/images/Ex3.png)
 
 *****
 第一篇文章就先到這邊結束吧
