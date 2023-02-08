@@ -83,8 +83,8 @@ rails db:create # 根據 config/database.yml 給目前的環境建立資料庫
 ### ✨ Rails Debug
 參考[官方Doc](https://rails.ruby.tw/debugging_rails_applications.html)
 
--------
-        
+-------       
+
 今天的文章就先到這邊啦！      
 之後第三章來寫寫資料庫關聯性    
 以及rails環境吧！
