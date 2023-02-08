@@ -2,6 +2,7 @@
 title: "Ruby手冊 第一章"
 date: 2023-01-14T15:08:28+08:00
 draft: false
+tags: [Ruby on Rails, coding]
 ---
 
 ## ♦️ Ruby手冊 第一章

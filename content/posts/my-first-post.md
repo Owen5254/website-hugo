@@ -2,7 +2,7 @@
 title: "My first post - 新朋友 Hugo"
 date: 2022-12-16T01:06:15+08:00
 draft: false
-
+tags: [Hugo, coding]
 ---
 
 ## 使用 Hugo 快速打造出自己的部落格  

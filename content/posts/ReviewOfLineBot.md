@@ -2,6 +2,7 @@
 title: "LineBot 使用心得"
 date: 2023-01-10T16:03:57+08:00
 draft: false
+tags: [python, linebot, coding]
 ---
 
 ## 使用LineBot後的心得分享

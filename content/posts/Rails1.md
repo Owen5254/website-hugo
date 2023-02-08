@@ -2,6 +2,7 @@
 title: "Rails寶典 第一章"
 date: 2023-01-12T17:09:21+08:00
 draft: false
+tags: [Ruby on Rails, coding]
 ---
 
 ## 🔥 Ruby on Rails 🔥
