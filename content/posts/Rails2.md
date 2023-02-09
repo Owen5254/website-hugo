@@ -1,7 +1,7 @@
 ---
 title: "Rails寶典 第二章"
 date: 2023-02-08T02:16:21+08:00
-draft: false
+draft: false  
 tags: [Ruby on Rails, coding]
 ---
 
@@ -86,6 +86,6 @@ rails db:create # 根據 config/database.yml 給目前的環境建立資料庫
 -------       
 
 今天的文章就先到這邊啦！      
-之後第三章來寫寫資料庫關聯性    
-以及rails環境吧！
+之後第三章來寫寫models關聯性  
+Raila 安全認證以及環境吧！
 

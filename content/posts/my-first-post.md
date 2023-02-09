@@ -95,7 +95,8 @@ cd 到 Hugo 資料夾執行：
 $ hugo
 ```
 這樣就打包起來了
-然後把他 push 到你的 github 就好了      
+接著cd 到 public      
+然後把他 push 到你的 github 就好了           
 網址為 : https://your-username.github.io
 
 好了 這樣就一個部落格啦！   

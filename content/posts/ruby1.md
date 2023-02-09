@@ -151,8 +151,8 @@ new_hash = {title: "Ruby", price: 350 }
 #### ☘️ symbol :
 symbol 是一個在ruby中非常特別的東西     
 而且又非常實用！      
-我們可以把 symbol 是一個「帶有名字的物件」   
-我們來看一個例子：        
+我們可以把 symbol 想成是一個「帶有名字的物件」   
+來看一個例子：        
 ```ruby
 class Order
   attr_reader :status
