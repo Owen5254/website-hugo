@@ -32,7 +32,7 @@ primary key 簡單來說就是一筆資料在一個表格中的地址
 
 ##### foreign key:  
 foreign key 是用來做不同表格之間的關聯      
-舉例來說 A表紀錄
+**Rails的慣例是「要被對到的那個 Model 的名字」加上 _id**
 在一張表格中 可以跟很多表格有關聯性的欄位      
 因此很常 foreign key 不只有一個     
 當然也不一定要是 primary key
@@ -96,10 +96,169 @@ end
 跟has_many :through 是差不多的    
 只是這邊換成has_one   
 舉例子 每個供應商都有一個帳戶 每個帳戶與一個帳戶歷史記錄相關聯
-
+![image](https://guides.rubyonrails.org/images/association_basics/has_one_through.png)
 
 ##### 6. has_and_belongs_to_many :
-
-
+has_and_belongs_to_many關聯與另一個模型建立了直接的多對多連線     
+沒有干預模型
+![image](https://guides.rubyonrails.org/images/association_basics/habtm.png)
 #### ⭐️ 自己關聯自己：
+有一次在我製作專案的時候    
+遇到了這個問題：要怎麼將models關聯自己呢？
+先說說這個專案叫做 whisper 是一個前輩帶我一起做的     
+我們希望他可以像twitter一樣     
+每個tweets下可以再有很多關聯的tweet留言     
+在 whisper中的 buzzs 就是 tweets     
+我們要讓 buzz可以透過 parent_id 這個foreign_key 來關聯自己
+下面是最後成功的程式碼 歡迎參考🥳： 
 
+首先是 model的設定
+```ruby
+# models/buzz.rb
+
+class Buzz < ApplicationRecord
+    belongs_to :user
+
+    has_many :buzzs, foreign_key: "parent_id" 
+    belongs_to :parent, class_name: "Buzz", optional: true 
+
+    acts_as_votable
+end
+```
+```ruby
+# db/migrate/_add_parent_to_buzzs
+
+class AddParentToBuzzs < ActiveRecord::Migration[7.0]
+  def change
+    add_column :buzzs, :parent_id, :integer, null: true 
+  end
+end
+```
+接著是 view的部分
+```erb
+<%# 展示首頁的buzzs(沒有 parent_id 的 buzzs)%>
+<%# 檔案：views/buzzs/index.html.erb %>
+
+<h1>Buzzs</h1>
+
+<div id="buzzs">
+  <% @buzzs.where(parent_id: nil).each do |buzz| %>
+    <%= render buzz %>
+    <p>
+      <%= link_to "Show this buzz", buzz %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New buzz", new_buzz_path %>
+```
+``` erb
+<%# 展示單一 buzz 的畫面(會有他的子 buzzs) 及創建child buzz 的 form %>
+<%# 檔案：views/buzzs/show.heml.erb %>
+
+<%= render @buzz %>
+
+<%# render reply buzz %>
+<% @buzz.buzzs.each do |buzz| %>
+  <div class="sub_buzz">
+    <%= render buzz %>
+  </div>
+  <%= link_to "Show this buzz", buzz %>
+  <%= render partial: 'buzzs/form', locals: {buzz: buzz.buzzs.build, parent: buzz} %>
+<% end %>
+
+
+<div>
+  <%= link_to "Edit this buzz", edit_buzz_path(@buzz) %> |
+  <%= link_to "Back to buzzs", buzzs_path %>
+
+  <%= button_to "Destroy this buzz", @buzz, method: :delete %>
+</div>
+
+<%# create form for child buzz %>
+<%= render partial: 'buzzs/form', locals: {buzz: @buzz.buzzs.build, parent: @buzz} %>
+
+```
+```erb
+<%# views/buzzs/_buzz.html.erb %>
+<div id="<%= dom_id buzz %>">
+  <% if buzz.parent_id == nil %>
+    <p>
+      <strong>Content:</strong>
+      <%= buzz.content %>
+    </p>
+
+    <%= button_to like_buzz_path(buzz), method: :put do %>
+	    <%= buzz.get_likes.size %>
+    <% end %>
+
+    <%= button_to dislike_buzz_path(buzz), method: :put do %>
+	    <%= buzz.get_dislikes.size %>
+    <% end %>
+  
+  <% else %>
+    <p>
+      <strong>Reply:</strong>
+      <%= buzz.content %>
+    </p>
+  <% end %>
+</div>
+```
+```erb
+<!-- views/buzzs/_form.html.erb 用來創建新 buzz的 form -->
+
+<%= form_with(model: buzz) do |form| %>
+  <% if buzz.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(buzz.errors.count, "error") %> prohibited this buzz from being saved:</h2>
+
+      <ul>
+        <% buzz.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "content", style: "display: block" %>
+    <%= form.text_field :content %>
+  </div>
+  <% if !parent.nil? %>
+    <input type="hidden" name="buzz[parent_id]" value= "<%= parent.id %>">
+  <% end %>
+  <div>
+    <%= form.submit "Create"%>
+  </div>
+<% end %>
+```
+```erb
+<!-- views/buzzs/new.html.erb -->
+
+<h1>New buzz</h1>
+<%= render partial: 'buzzs/form', locals: {buzz: @buzz, parent: nil} %>
+<br>
+
+<div>
+  <%= link_to "Back to buzzs", buzzs_path %>
+</div>
+```
+```erb
+<!-- views/buzzs/edit.html.erb -->
+<h1>Editing buzz</h1>
+
+<%= render partial: 'buzzs/form', locals: {buzz: @buzz, parent: @buzz.parent} %>
+
+<br>
+
+<div>
+  <%= link_to "Show this buzz", @buzz %> |
+  <%= link_to "Back to buzzs", buzzs_path %>
+</div>
+```
+
+----------------
+今天的內容就分享到這邊啦！      
+下一篇文章來介紹簡單的 debug 方法   
+還有 rails console 的用法       
+那我們下篇文章見啦！！！
