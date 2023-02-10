@@ -135,9 +135,9 @@ class AddParentToBuzzs < ActiveRecord::Migration[7.0]
 end
 ```
 接著是 view的部分
-```erb
-<%# 展示首頁的buzzs(沒有 parent_id 的 buzzs)%>
-<%# 檔案：views/buzzs/index.html.erb %>
+```html
+<!-- 展示首頁的buzzs(沒有 parent_id 的 buzzs)-->
+<!-- 檔案：views/buzzs/index.html.erb -->
 
 <h1>Buzzs</h1>
 
@@ -152,13 +152,13 @@ end
 
 <%= link_to "New buzz", new_buzz_path %>
 ```
-``` erb
-<%# 展示單一 buzz 的畫面(會有他的子 buzzs) 及創建child buzz 的 form %>
-<%# 檔案：views/buzzs/show.heml.erb %>
+``` html
+<!-- 展示單一 buzz 的畫面(會有他的子 buzzs) 及創建child buzz 的 form -->
+<!-- 檔案：views/buzzs/show.heml.erb -->
 
 <%= render @buzz %>
 
-<%# render reply buzz %>
+<!-- render reply buzz -->
 <% @buzz.buzzs.each do |buzz| %>
   <div class="sub_buzz">
     <%= render buzz %>
@@ -175,12 +175,13 @@ end
   <%= button_to "Destroy this buzz", @buzz, method: :delete %>
 </div>
 
-<%# create form for child buzz %>
+<!-- create form for child buzz -->
 <%= render partial: 'buzzs/form', locals: {buzz: @buzz.buzzs.build, parent: @buzz} %>
 
 ```
-```erb
-<%# views/buzzs/_buzz.html.erb %>
+```html
+<!-- views/buzzs/_buzz.html.erb -->
+
 <div id="<%= dom_id buzz %>">
   <% if buzz.parent_id == nil %>
     <p>
@@ -204,7 +205,7 @@ end
   <% end %>
 </div>
 ```
-```erb
+```html
 <!-- views/buzzs/_form.html.erb 用來創建新 buzz的 form -->
 
 <%= form_with(model: buzz) do |form| %>
@@ -232,7 +233,7 @@ end
   </div>
 <% end %>
 ```
-```erb
+```html
 <!-- views/buzzs/new.html.erb -->
 
 <h1>New buzz</h1>
@@ -243,7 +244,7 @@ end
   <%= link_to "Back to buzzs", buzzs_path %>
 </div>
 ```
-```erb
+```html
 <!-- views/buzzs/edit.html.erb -->
 <h1>Editing buzz</h1>
 
@@ -261,4 +262,4 @@ end
 今天的內容就分享到這邊啦！      
 下一篇文章來介紹簡單的 debug 方法   
 還有 rails console 的用法       
-那我們下篇文章見啦！！！
+那我們下篇文章見啦！！！☺️
