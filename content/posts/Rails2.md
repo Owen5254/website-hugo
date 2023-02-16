@@ -87,5 +87,5 @@ rails db:create # 根據 config/database.yml 給目前的環境建立資料庫
 
 今天的文章就先到這邊啦！      
 之後第三章來寫寫models關聯性  
-Raila 安全認證以及環境吧！
+還有 Devise！
 
