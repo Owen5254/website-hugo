@@ -1,5 +1,5 @@
 ---
-title: "Rails寶典 第二章"
+title: "Rails寶典 第二章 MVC"
 date: 2023-02-08T02:16:21+08:00
 draft: false  
 tags: [Ruby on Rails, coding]
