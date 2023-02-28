@@ -101,7 +101,7 @@ end
 has_and_belongs_to_many關聯與另一個模型建立了直接的多對多連線     
 沒有干預模型
 ![image](https://guides.rubyonrails.org/images/association_basics/habtm.png)
-#### ⭐️ 自己關聯自己：
+#### ⭐️ 一對多 的 自己關聯自己：
 有一次在我製作專案的時候    
 遇到了這個問題：要怎麼將models關聯自己呢？
 先說說這個專案叫做 whisper 是一個前輩帶我一起做的     

@@ -1,5 +1,5 @@
 ---
-title: "Rails寶典 第四章"
+title: "Rails寶典 第四章 Devise"
 date: 2023-01-12T17:09:21+08:00
 draft: false
 tags: [Ruby on Rails, coding]
@@ -70,6 +70,6 @@ end
 Devise 真的是 Rails內非常厲害的套件       
 如果想更佳熟用它可以參考[官方Github](https://github.com/heartcombo/devise)!       
 那今天就介紹到這邊啦！        
-下一章主題來介紹其他套件好了 歡迎繼續收看喔！
+下一章主題是表單form 歡迎繼續收看喔！
 
 
